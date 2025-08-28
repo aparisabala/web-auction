@@ -1,6 +1,6 @@
 # Web-Auction
 
-Web-Auction is a full-stack auction platform with a Next.js client and a Node.js server.
+Web-Auction is a full-stack auction platform with a Next.js client and a Node.js server. You and add listing, set primary price, bid on them, and win listing.
 
 ## Project Structure
 

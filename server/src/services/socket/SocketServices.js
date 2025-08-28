@@ -1,25 +1,25 @@
-const { Server } = require('socket.io');
+const { Server } = require("socket.io");
 class SocketServices {
-
-    constructor(server) {
-        this.io = new Server(server, {
-          cors: {
-            origin: process.env.ORIGIN || '*',
-          }
+  constructor() {
+    this.io = null; 
+  }
+  init(server) {
+    if (!this.io) {
+      this.io = new Server(server, {
+        cors: {
+          origin: process.env.ORIGIN || "*",
+        },
+      });
+      this.io.on("connection", (socket) => {
+        socket.on("chat", (data) => {
+          this.io.emit("chat", data);
         });
-    }
-
-    init(){
-        this.io.on('connection', (socket) => {
-                socket.on('chat', (data) => {
-                this.io.emit('chat', data); 
-            });
-
-            socket.on('disconnect', () => {
-                console.log('❌ User disconnected:', socket.id);
-            });
+        socket.on("disconnect", () => {
         });
+      });
     }
+    return this.io;
+  }
 }
-
-module.exports = SocketServices;
+const socket = new SocketServices();
+module.exports = socket;

@@ -5,7 +5,7 @@
     "lib": ["ES2020"],
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["@src/*"]
+      "@src/*": ["src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

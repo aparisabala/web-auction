@@ -1,42 +1,74 @@
-'use client'; 
-import Image from "next/image";
-import styles from "./page.module.css";
-import { useEffect,useState } from 'react';
-import { io } from 'socket.io-client';
-let socket;
+require('dotenv').config();
+export const metadata = {
+  title: `${process.env.APP_NAME} | Welcome`,
+};
 export default function Home() {
-  const [connected, setConnected] = useState(false);
-  const [currentbid, setCurrentBid] = useState(0);
-  const [myBid, setMyBid] = useState(0);
-  useEffect(() => {
-    // Connect to Socket.IO server
-    socket = io("http://localhost:5000");
-    console.log(socket);
-    socket.on("connect", () => {
-      setConnected(true)
-    });
-
-    socket.on("chat", (data) => {
-        setCurrentBid((myBid+(data?.myBid)))
-    });
-
-    // Clean up on unmount
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
-  const sendMessage = () => {
-    if (socket && connected) {
-      socket.emit("chat", {myBid: parseFloat(myBid)});
-    }
-  };
-
   return (
-    <div className={styles.page}>
-        <h1> Current Bid: {currentbid.toLocaleString()}</h1>
-        <input type="number" value={myBid} onChange={(e)=>{setMyBid(e.target.value )}} />
-       <button onClick={sendMessage}> Send Server </button>
+    <div className='container'>
+      <div className='row'>
+        <div className='col-md-12'>
+          <div className="auction-card">
+            <div className="auction-header">
+              <h1>Live Auction</h1>
+              <p>Create an account and bid on the items to win</p>
+            </div>
+            <div className="auction-items container">
+              <div className="row">
+                <div className="col-md-3">
+                  <div className="auction-item">
+                    <img src="https://placehold.co/600x400" alt="Item 1" />
+                    <h4>Antique Vase</h4>
+                    <p>Starting Bid: $100</p>
+                    <a href="#" className="bid-btn">
+                      Place Bid
+                    </a>
+                  </div>
+                </div>
+                 <div className="col-md-3">
+                  <div className="auction-item">
+                    <img src="https://placehold.co/600x400" alt="Item 1" />
+                    <h4>Antique Vase</h4>
+                    <p>Starting Bid: $100</p>
+                    <a href="#" className="bid-btn">
+                      Place Bid
+                    </a>
+                  </div>
+                </div>
+                 <div className="col-md-3">
+                  <div className="auction-item">
+                    <img src="https://placehold.co/600x400" alt="Item 1" />
+                    <h4>Antique Vase</h4>
+                    <p>Starting Bid: $100</p>
+                    <a href="#" className="bid-btn">
+                      Place Bid
+                    </a>
+                  </div>
+                </div>
+                 <div className="col-md-3">
+                  <div className="auction-item">
+                    <img src="https://placehold.co/600x400" alt="Item 1" />
+                    <h4>Antique Vase</h4>
+                    <p>Starting Bid: $100</p>
+                    <a href="#" className="bid-btn">
+                      Place Bid
+                    </a>
+                  </div>
+                </div>
+                 <div className="col-md-3">
+                  <div className="auction-item">
+                    <img src="https://placehold.co/600x400" alt="Item 1" />
+                    <h4>Antique Vase</h4>
+                    <p>Starting Bid: $100</p>
+                    <a href="#" className="bid-btn">
+                      Place Bid
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -2,14 +2,14 @@ require('dotenv').config();
 export const metadata = {
   title: `${process.env.APP_NAME} | Welcome`,
 };
-export default function Login() {
+export default function Register() {
   return (
     <div className='container'>
       <div className='row'>
         <div className='col-md-12'>
           <div className="auction-card">
             <div className="auction-header">
-              <h1>User Login</h1>
+              <h1>Create Account</h1>
             </div>
             <div className="auction-items container">
               <div className='row'>
@@ -26,6 +26,15 @@ export default function Login() {
                         />
                       </div>
                       <div className="form-group mb-3">
+                        <label>User Name </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          aria-describedby="emailHelp"
+                          placeholder="Enter email"
+                        />
+                      </div>
+                      <div className="form-group mb-3">
                         <label>Password</label>
                         <input
                           type="password"
@@ -33,11 +42,13 @@ export default function Login() {
                           placeholder="Password"
                         />
                       </div>
-                      <div className="form-check mb-3">
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className="form-check-label" htmlFor="exampleCheck1">
-                          Check me out
-                        </label>
+                      <div className="form-group mb-3">
+                        <label>Confirm Password</label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          placeholder="Password"
+                        />
                       </div>
                       <div  className='text-end'>
                         <button type="submit" className="btn btn-primary">
