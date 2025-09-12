@@ -1,4 +1,5 @@
-const { Server } = require("socket.io");
+import { Server } from "socket.io";
+
 class SocketServices {
   constructor() {
     this.io = null; 
@@ -12,6 +13,7 @@ class SocketServices {
       });
       this.io.on("connection", (socket) => {
         socket.on("chat", (data) => {
+          console.log(data);
           this.io.emit("chat", data);
         });
         socket.on("disconnect", () => {
@@ -22,4 +24,4 @@ class SocketServices {
   }
 }
 const socket = new SocketServices();
-module.exports = socket;
+export default socket;

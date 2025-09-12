@@ -1,3 +1,5 @@
+import HomePage from '@components/pages/HomePage';
+
 require('dotenv').config();
 export const metadata = {
   title: `${process.env.APP_NAME} | Welcome`,
@@ -67,6 +69,9 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+        <div className='col-md-12'>
+            <HomePage />
         </div>
       </div>
     </div>

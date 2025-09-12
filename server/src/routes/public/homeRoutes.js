@@ -1,4 +1,6 @@
-const router = require('express').Router();
-const ctrl = require('@src/controllers/public/publicController');
-const homeRoute = router.get('/current-bidding', ctrl.list);
-module.exports = homeRoute;
+import { list, register } from '#src/controllers/public/publicController';
+import { Router } from 'express';
+const homeRouter = Router();
+homeRouter.get('/current-bidding', list);
+homeRouter.post('/user/register', register);
+export default homeRouter;

@@ -1,32 +1,32 @@
-require('dotenv').config();
-require('module-alias/register');
-const express = require('express');
-const cors = require('cors');
-const http = require('http');
-const models = require('@src/models');
-const socket = require('@src/services/socket/SocketServices');
-const homeRoute = require('@src/routes/public/homeRoutes');
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import http from 'http';
+import models from '#src/models/index';
+import homeRouter from '#src/routes/public/homeRoutes';
+import socket from '#src/services/socket/SocketServices';
 
-//start express 
+// Start express
 const app = express();
 const server = http.createServer(app);
+
 app.use(cors({ origin: process.env.ORIGIN || '*' }));
 app.use(express.json());
 
-//init socket
-socket.init(server)
-
-//register router
+// Register router
 app.get('/', (req, res) => res.status(200).json({ success: true, data: [], message: 'API is running' }));
-app.use('/api/public',homeRoute);
+app.use('/api/public',homeRouter);
 
-//run the web
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, async () => {
-    try {
-        await models.sequelize.authenticate();
-    } catch (e) {
-        console.error('DB connection failed:', e.message);
-    }
-    console.log(`Server on http://localhost:${PORT}`);
+// Init socket
+socket.init(server);
+
+// Run the server
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, async () => {
+  try {
+      await models.sequelize.authenticate();
+  } catch (e) {
+    console.error('DB connection failed:', e.message);
+  }
+  console.log(`Server running at ${process.env.ORIGIN || 'http://localhost'}:${PORT}`);
 });

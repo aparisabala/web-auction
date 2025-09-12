@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
-const database = require('@src/config/dbConfig');
-const sequelize = new Sequelize(database[process.env.NODE_ENV]);
-module.exports = sequelize;
+import Sequelize from 'sequelize';
+import dbConfig from '#src/config/dbConfig';
+const sequelize = new Sequelize(dbConfig[process.env.NODE_ENV]);
+export default sequelize;

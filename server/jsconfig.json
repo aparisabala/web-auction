@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "lib": ["ES2020"],
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": ["src/*"]
+    "target": "ES6",          // JavaScript version
+    "module": "ES6",          // Use ES6 modules (import/export)
+    "lib": ["ES6", "DOM"],    // Available standard libraries
+    "baseUrl": ".",           // Base path for module resolution
+    "paths": {                // Path alias
+      "#src/*": ["src/*.js"]
     }
   },
   "exclude": ["node_modules", "dist"]

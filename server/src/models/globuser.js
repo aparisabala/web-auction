@@ -1,27 +1,27 @@
-'use strict';
-const { Model } = require('sequelize');
+import sequelize from '#src/config/sequelizeConnection';
+import { Model, DataTypes } from 'sequelize';
 
-module.exports = (sequelize, DataTypes) => {
-  class Globuser extends Model {
-    static associate(models) {}
+class Globuser extends Model {
+  static associate(models) {
+    // define associations here
   }
+}
 
-  Globuser.init(
-    {
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      password: DataTypes.STRING,
-      image: DataTypes.STRING,
-      extension: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      tableName: 'globusers',
-      modelName: 'Globuser',
-      underscored: true, 
-      timestamps: true,    
-    }
-  );
+Globuser.init(
+  {
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    image: DataTypes.STRING,
+    extension: DataTypes.STRING,
+  },
+  {
+    sequelize,
+    tableName: 'globusers',
+    modelName: 'Globuser',
+    underscored: true,
+    timestamps: true,
+  }
+);
 
-  return Globuser;
-};
+export default Globuser;
