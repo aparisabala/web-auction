@@ -13,7 +13,6 @@ class SocketServices {
       });
       this.io.on("connection", (socket) => {
         socket.on("chat", (data) => {
-          console.log(data);
           this.io.emit("chat", data);
         });
         socket.on("disconnect", () => {
