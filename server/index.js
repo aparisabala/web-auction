@@ -10,7 +10,11 @@ import socket from '#src/services/socket/SocketServices';
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors({ origin: process.env.ORIGIN || '*' }));
+app.use(cors({
+  origin: process.env.ORIGIN || '*',
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 app.use(express.json());
 
 // Register router
